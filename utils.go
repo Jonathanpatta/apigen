@@ -139,7 +139,11 @@ func CreateStruct(obj *ApiObject, structMap map[string]bool, withTags bool) stri
 			code += "int"
 			if withTags {
 				tagName := stringy.New(field.Name).SnakeCase("?", "").ToLower()
-				code += fmt.Sprintf("  `json:\"%s,omitempty\"`\n", tagName)
+				code += fmt.Sprintf("  `json:\"%s,omitempty\"`", tagName)
+				if field.GormTag != "" {
+					code += field.GormTag
+				}
+				code += "\n"
 			} else {
 				code += "\n"
 			}
@@ -155,7 +159,11 @@ func CreateStruct(obj *ApiObject, structMap map[string]bool, withTags bool) stri
 			code += "string"
 			if withTags {
 				tagName := stringy.New(field.Name).SnakeCase("?", "").ToLower()
-				code += fmt.Sprintf("  `json:\"%s,omitempty\"`\n", tagName)
+				code += fmt.Sprintf("  `json:\"%s,omitempty\"`", tagName)
+				if field.GormTag != "" {
+					code += field.GormTag
+				}
+				code += "\n"
 			} else {
 				code += "\n"
 			}
@@ -171,7 +179,11 @@ func CreateStruct(obj *ApiObject, structMap map[string]bool, withTags bool) stri
 			code += "bool"
 			if withTags {
 				tagName := stringy.New(field.Name).SnakeCase("?", "").ToLower()
-				code += fmt.Sprintf("  `json:\"%s,omitempty\"`\n", tagName)
+				code += fmt.Sprintf("  `json:\"%s,omitempty\"`", tagName)
+				if field.GormTag != "" {
+					code += field.GormTag
+				}
+				code += "\n"
 			} else {
 				code += "\n"
 			}
@@ -194,7 +206,11 @@ func CreateStruct(obj *ApiObject, structMap map[string]bool, withTags bool) stri
 				code += fmt.Sprintf("%s", field.Object.Name)
 				if withTags {
 					tagName := stringy.New(field.Name).SnakeCase("?", "").ToLower()
-					code += fmt.Sprintf("  `json:\"%s,omitempty\"`\n", tagName)
+					code += fmt.Sprintf("  `json:\"%s,omitempty\"`", tagName)
+					if field.GormTag != "" {
+						code += field.GormTag
+					}
+					code += "\n"
 				} else {
 					code += "\n"
 				}

@@ -9,6 +9,7 @@ type FieldProperties struct {
 	Name     string
 	DbName   string
 	Type     string
+	GormTag  string
 	Repeated bool
 	Pointer  bool
 	Complex  bool
